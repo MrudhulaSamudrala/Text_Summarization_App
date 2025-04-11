@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import tensorflow as tf
 from tensorflow.python.keras import backend as K
 
@@ -242,5 +241,4 @@ class AttentionLayer(tf.keras.layers.Layer):
         return [
             tf.TensorShape((input_shape[1][0], input_shape[1][1], input_shape[1][2])),
             tf.TensorShape((input_shape[1][0], input_shape[1][1], input_shape[0][1]))
->>>>>>> 284d04710deb2c064a4baa77dd3d2c6d0e077eab
         ]
