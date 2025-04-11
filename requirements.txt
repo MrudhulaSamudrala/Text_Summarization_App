@@ -1,0 +1,22 @@
+streamlit
+pandas==2.1.4
+bert-extractive-summarizer
+scipy==1.10.1  # Downgraded for compatibility
+spacy
+PyMuPDF==1.23.22
+pytesseract==0.3.10
+Pillow==10.2.0
+gTTS==2.5.1
+numpy
+tensorflow==2.12.0
+keras==2.12.0
+easyocr==1.7.1
+scikit-learn
+nltk
+transformers==4.29.2
+torch==1.13.1
+sentencepiece==0.1.99
+protobuf==3.20.3
+python-Levenshtein
+
+huggingface_hub[hf_xet]    # Recommended for Xet storage access performance

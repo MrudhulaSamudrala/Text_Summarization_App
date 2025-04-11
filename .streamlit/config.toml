@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+[server]
+headless = true
+enableCORS = false
+=======
+[server]
+headless = true
+enableCORS = false
+>>>>>>> 284d04710deb2c064a4baa77dd3d2c6d0e077eab

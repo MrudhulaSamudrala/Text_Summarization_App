@@ -1,0 +1,5 @@
+tesseract-ocr
+libgl1-mesa-glx
+poppler-utils
+libtesseract-dev
+ffmpeg
