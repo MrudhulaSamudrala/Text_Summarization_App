@@ -19,8 +19,6 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
 from custom_attention import AttentionLayer
-import pkg_resources
-from summarizer import Summarizer
 from transformers import BertModel, BertTokenizer
 
 try:
@@ -30,12 +28,17 @@ except RuntimeError:
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
+# Use modern package version checker
 try:
-    pkg_info = pkg_resources.get_distribution("bert-extractive-summarizer")
-    print(f"bert-extractive-summarizer version: {pkg_info.version}")
-except pkg_resources.DistributionNotFound:
-    print("bert-extractive-summarizer is NOT installed")
+    from importlib.metadata import version, PackageNotFoundError
+except ImportError:
+    from importlib_metadata import version, PackageNotFoundError  # For older Python versions
 
+try:
+    pkg_version = version("bert-extractive-summarizer")
+    print(f"bert-extractive-summarizer version: {pkg_version}")
+except PackageNotFoundError:
+    print("bert-extractive-summarizer is NOT installed")
 
 # Check if user is logged in
 if 'logged_in' not in st.session_state or not st.session_state.logged_in:
