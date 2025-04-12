@@ -11,7 +11,7 @@ def show_landing_page():
         }
         
         .block-container {
-            padding: 0rem !important;
+            padding: 0rem 3rem !important;
             margin-top: 4rem !important;
             margin-bottom: 4rem!important;
             padding-left : 2rem
@@ -56,11 +56,12 @@ def show_landing_page():
             font-size: 2.8rem;
             font-weight: 800;
             line-height: 1.2;
-            background: linear-gradient(45deg, #0066ff, #7c3aed);
+            background: linear-gradient(45deg, #0066ff, #7c3aed, #ed15a9);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeIn 1s ease-in;
-            margin-bottom: 5rem;  /* Changed from 20px to 4rem */
+            margin-bottom: 1rem;  /* Changed from 20px to 4rem */
+            marigin-top: 5rem;
             animation: slideUp 1s ease-out;
         }
 
@@ -81,7 +82,7 @@ def show_landing_page():
             margin: 15px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 1s ease-in;
-            height: 400px;  /* Added fixed height */
+            height: 375px;  /* Added fixed height */
             display: flex;
             flex-direction: column;
         }
@@ -244,14 +245,14 @@ def show_landing_page():
         <div class="feature-card">
             <div class="feature-icon">📄</div>
             <h3>Multiple Input Options</h3>
-            <p>Easily upload PDFs, screenshots (image-to-text), CSV files, or paste text directly to get instant summaries from any format.</p>
+            <p>Easily upload PDFs, screenshot images, CSV files, or paste text directly to get instant summaries from any format.</p>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
         st.markdown("""
         <div class="feature-card">
-            <div class="feature-icon">🤖</div>
+            <div class="feature-icon">🎯</div>
             <h3>AI Model Selection</h3>
             <p>Choose between precise extractive summaries or more human-like abstractive summaries, tailored to your needs.</p>
         </div>
