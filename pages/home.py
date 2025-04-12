@@ -7,7 +7,8 @@ def show_landing_page():
     <style>
         /* Remove default Streamlit white background and padding */
         .stApp {
-            background: transparent;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(124, 58, 237, 0.1));
+            background-attachment: fixed;
         }
         
         .block-container {
