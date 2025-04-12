@@ -1,0 +1,18 @@
+streamlit>=1.22.0
+pandas>=1.5.0
+bert-extractive-summarizer>=0.7.1
+transformers>=4.28.1
+torch>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.2.2
+PyMuPDF>=1.21.1
+pytesseract>=0.3.10
+Pillow>=9.5.0
+gTTS>=2.3.1
+tensorflow>=2.12.0
+easyocr>=1.7.0
+nltk>=3.8.1
+sentencepiece>=0.1.99
+keras>=2.12.0
+protobuf==3.20.*
+sqlite3-binary ; platform_system != "Windows"
