@@ -87,8 +87,8 @@ def show_all_users():
         print(f"{row[0]:<5} {row[1]:<20} {row[2] or '':<30} {row[3]}")
     conn.close()
 
-# Call this to display the table
-show_all_users()
-
 # Initialize the database when this module is imported
-initialize_database()      
+initialize_database()
+
+# Call this to display the table
+show_all_users()      

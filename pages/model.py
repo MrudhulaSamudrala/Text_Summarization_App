@@ -32,7 +32,7 @@ with st.sidebar:
         st.switch_page("main.py")
 
 # Initialize the BERT summarizer for extractive summarization
-extractive_model = Summarizer()
+extractive_model = Summarizer(model='bert-base-uncased', gpu_id=-1)  # Force CPU usage
 
 # Initialize session state for history
 if 'summary_history' not in st.session_state:
