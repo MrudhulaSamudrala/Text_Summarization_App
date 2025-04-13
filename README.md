@@ -22,4 +22,7 @@ See `requirement.txt` for project dependencies.
 ## Setup
 1. Clone the repository
 2. Install dependencies: `pip install -r requirement.txt`
-3. Run the application: `python main.py` 
+3. Run the application: `python main.py`
+
+## Deployed Link
+https://textsumapp.streamlit.app/
