@@ -290,7 +290,7 @@ if 'current_audio_file' not in st.session_state:
 # Create tabs for different input methods
 tab1, tab2, tab3, tab4 = st.tabs(["Text Input", "PDF Upload", "Image Upload", "CSV Upload"])
 
-def display_summary_with_audio(summary):
+def display_summary_with_audio(summary, unique_id=None):
     """Display summary with audio controls."""
     st.write(summary)
     
@@ -299,23 +299,28 @@ def display_summary_with_audio(summary):
     if audio_path and audio_data:
         st.audio(audio_data, format='audio/mp3')
         
+        # Generate a timestamp for unique keys
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S_%f')
+        
         col1, col2, col3 = st.columns([4, 4, 2])
         with col1:
             st.download_button(
                 label="📥 Audio Summary",
                 data=audio_data,
                 file_name=os.path.basename(audio_path),
-                mime="audio/mpeg"
+                mime="audio/mp3",
+                key=f"audio_download_{unique_id or timestamp}"
             )
         with col2:
             st.download_button(
                 label="📥 Text Summary",
                 data=summary,
-                file_name=f"summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
-                mime="text/plain"
+                file_name=f"summary_{timestamp}.txt",
+                mime="text/plain",
+                key=f"text_download_{unique_id or timestamp}"
             )
         with col3:
-            if st.button("New Summary"):
+            if st.button("New Summary", key=f"new_summary_{unique_id or timestamp}"):
                 if audio_path:
                     try:
                         os.remove(audio_path)
@@ -323,9 +328,10 @@ def display_summary_with_audio(summary):
                         pass
                 st.session_state.clear_summary = True
                 st.rerun()
+
     # Clean up the temporary file
     try:
-        os.remove(audio_file)
+        os.remove(audio_path)
     except:
         pass
 
@@ -389,7 +395,7 @@ with tab3:
     image_file = st.file_uploader("Upload an image file", type=["png", "jpg", "jpeg"], key="image_uploader")
     
     if image_file is not None:
-        st.image(image_file, caption="Uploaded Image", use_column_width=True)
+        st.image(image_file, caption="Uploaded Image", use_container_width=True)
         # Summary length slider
         summary_ratio = st.slider(
             "Summary Length",
@@ -441,22 +447,26 @@ with tab4:
         
         if extract_option == "Process as CSV (Summarize each row)":
             df = pd.read_csv(csv_file)
-            
+    
             if 'Text' in df.columns:
                 df = df.dropna(subset=['Text'])  # Remove rows with missing text
+                # Add row numbers and generate summaries
+                df['Row_Number'] = range(1, len(df) + 1)
                 df['Summary'] = df['Text'].apply(lambda x: summarize_text(x, ratio=summary_ratio, model_type=model_type.lower()))
                 st.subheader("Summarized Data")
-                
+        
                 # Display each summary with audio controls
                 for idx, row in df.iterrows():
-                    st.write(f"Row {idx + 1}:")
-                    display_summary_with_audio(row['Summary'])
-                    add_to_history(row['Text'], row['Summary'], f"CSV Row {idx + 1} ({model_type})")
+                    st.write(f"Row {row['Row_Number']}:")
+                    st.write("Original Text:")
+                    st.write(row['Text'])
+                    st.write("Summary:")
+                    display_summary_with_audio(row['Summary'], f"csv_row_{row['Row_Number']}")
+                    add_to_history(row['Text'], row['Summary'], f"CSV Row {row['Row_Number']} ({model_type})")
                     st.markdown("---")
                 
                 # Option to download the summarized file
-                csv = df.to_csv(index=False).encode('utf-8')
-                st.download_button("Download Summary", csv, "summary.csv", "text/csv")
+                #st.download_button("Download Summary", csv, "summary.csv", "text/csv")
             else:
                 st.error("CSV file must contain a 'Text' column.")
         else:
@@ -522,3 +532,11 @@ with st.sidebar:
                     pass
     else:
         st.info("No summary history yet. Start by summarizing some text!")
+
+
+
+
+
+
+                
+                
