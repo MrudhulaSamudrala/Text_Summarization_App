@@ -514,7 +514,7 @@ with st.sidebar:
                             data=audio_data,
                             file_name=f"summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp3",
                             mime="audio/mpeg",
-                            key=f"audio_{entry['source_type']}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+                            key=f"audio_history_{entry['source_type']}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}"
                         )
                     with col2:
                         st.download_button(
@@ -522,7 +522,7 @@ with st.sidebar:
                             data=entry['summary'],
                             file_name=f"summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
                             mime="text/plain",
-                            key=f"text_{entry['source_type']}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+                            key=f"text_history_{entry['source_type']}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}"
                         )
                 
                 # Clean up temporary audio file
@@ -538,5 +538,6 @@ with st.sidebar:
 
 
 
+                        # Option to download the summarized file
                 
                 
